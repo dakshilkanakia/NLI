@@ -1,0 +1,101 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+{% if user.is_authenticated%}
+
+<h1>Records</h1>
+
+<div class="input-group mb-3">
+  <input type="text" class = "form-control" placeholder="Search by first name" aria-label="Search by first name">
+  <span style = "margin-left : 10px" class="btn btn-primary">Search</span>
+  <input style = "margin-left : 20px" type="text" class = "form-control" placeholder="Search by last name" aria-label="Search by last name">
+  <span style = "margin-left : 10px" class="btn btn-primary">Search</span>
+  <input style = "margin-left : 20px" type="text" class = "form-control" placeholder="Search by state" aria-label="Search by State">
+  <span style = "margin-left : 10px" class="btn btn-primary">Search</span>
+</div>
+  <br>
+<table class="table table-hover table-bordered">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Affilation</th>
+      <th scope="col">Position</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">County</th>
+      <th scope="col">Country</th>
+      <th scope="col">Zip Code</th>
+      <th scope="col">Acctivity Type</th>
+      <th scope="col">Activity Name</th>
+      <th scope="col">Year</th>
+      <th scope="col">Section</th>
+      <th scope="col">Pass/Fail</th>
+      <th scope="col">Fee</th>
+      <th scope="col">Sponsor</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% if records %}
+    {% for record in records %}
+    <tr onclick= "window.location.href = '{% url 'record' record.id %}'" style="cursor: pointer;"> 
+      <!--dont touch above line its working fine -->
+      <td>{{record.id}}</td>
+      <td>{{record.first_name}}</td>
+      <td>{{record.last_name}}</td>
+      <td>{{record.email}}</td>
+      <td>{{record.phone}}</td>
+      <td>{{record.affilation}}</td>
+      <td>{{record.position}}</td>
+      <td>{{record.city}}</td>
+      <td>{{record.state}}</td>
+      <td>{{record.county}}</td>
+      <td>{{record.country}}</td>
+      <td>{{record.zip_code}}</td>
+      <td>{{record.activity_type}}</td>
+      <td>{{record.activity_name}}</td>
+      <td>{{record.year}}</td>
+      <td>{{record.section}}</td>
+      <td>{{record.pass_fail}}</td>
+      <td>{{record.fee}}</td>
+      <td>{{record.sponsor}}</td>
+      <td>{{record.id}}</td>
+      </a>
+    </tr>
+      {% endfor %}
+    {%endif%}
+
+  </tbody>
+  </table>
+    <br>
+
+{%else%}
+<div class = "col-md-6 offset-md-3">
+<h1>Login </h1>
+<br>
+<br>
+<form method="POST" action="{%url 'home'%}">
+    {%csrf_token %}
+    <form>
+        <div class="mb-3">
+          <input type="text" class="form-control" name = "username" placeholder="Username" required >
+         </div>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" name = "password", placeholder = "Password" , required ">
+        </div>
+        
+        <button type="submit" class="btn btn-secondary">Login</button>
+      </form>
+
+</form>
+</div>
+
+{%endif%}
+
+{%endblock%}

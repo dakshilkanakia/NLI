@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+      
+<div class="card">
+    <div class="card-header">
+        {{customer_record.id}} 
+    </div>
+    <div class="card-body">
+      <strong> First Name</strong>  = {{customer_record.first_name}}<br>
+      <strong>Last Name</strong> = {{customer_record.last_name}}<br>
+      <strong>Email </strong>= {{customer_record.email}}<br>
+      <strong>Phone </strong>= {{customer_record.phone}}<br>
+      <strong>Affilation </strong>= {{customer_record.affilation}}<br>
+      <strong>Position </strong>= {{customer_record.position}}<br>
+      <strong>City </strong>= {{customer_record.city}}<br>
+      <strong>State </strong>= {{customer_record.state}}<br>
+      <strong>County </strong>= {{customer_record.county}}<br>
+      <strong>Country</strong> = {{customer_record.country}}<br>
+      <strong>ZipCode</strong> = {{customer_record.zip_code}}<br>
+      <strong>Activity Type</strong> = {{customer_record.activity_type}}<br>
+      <strong>Activity Name</strong> = {{customer_record.activity_name}}<br>
+      <strong>Year </strong>= {{customer_record.year}}<br>
+      <strong>Section</strong> = {{customer_record.section}}<br>
+      <strong>Pass/Fail</strong> = {{customer_record.pass_fail}}<br>
+      <strong>Fee </strong>= {{customer_record.fee}}<br>
+      <strong>Sponsor </strong>= {{customer_record.sponsor}}<br>
+    </div>
+  </div>
+  <br>
+  <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+  <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger" style =" margin-left: 20px">Delete</a>
+  <a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary "style = "margin-left: 20px">Update Record</a>
+
+
+{% endblock%}
